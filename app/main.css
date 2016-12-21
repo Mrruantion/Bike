@@ -18,7 +18,7 @@ h1, h2, h3, h4, h5, h6, p, ul {
   padding: 0;
 }
 
-.ant-layout-wrapper {
+/*.ant-layout-wrapper {
   padding: 0 50px;
 }
 
@@ -40,11 +40,137 @@ h1, h2, h3, h4, h5, h6, p, ul {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;  
-    /*padding: 20px 20px 0;*/
+    padding: 20px 20px 0;
     position: absolute;
     top: 68px;
     left: 0;
     right: 0;
     bottom: 0;
     overflow-y: auto;
+}*/
+/* 左侧导航固定宽度 */
+#leftMenu {   
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: #333;
+    border-right: 1px solid #e9e9e9;
+}
+
+/* logo样式 */
+#logo {
+    display: block;
+    margin: 20px auto;
+    padding-left: 10px;
+    font-size: 20px;
+    color: #555;
+    -webkit-transition:all 1s;
+    -moz-transition:all 1s;
+    -o-transition:all 1s;
+    -ms-transition:all 1s;
+    transition:all 1s;
+}
+#logo:hover {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+
+
+/* 右侧宽度自适应 */
+#rightWrap {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;    
+    padding: 20px 20px 0 20px;
+    position: absolute;
+    top: 0;
+    left: 185px;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+
+}
+
+.right-box {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;  
+    padding: 20px 20px 0;
+    position: absolute;
+    top: 73px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+}
+
+#rightWrap .ant-menu-submenu {
+    float: right;
+}
+
+/*.chart-box {
+    margin-top: 30px;
+}
+
+.ege {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.ege a {
+    color: #009688;
+    font-size: 16px;
+}
+
+.lastPic {
+    display: block;
+    margin: 16% auto 0;
+}
+
+.ani-box {
+    text-align: center;
+}
+
+.doclist {
+    line-height: 40px;
+}*/
+
+.numeric-input .ant-tooltip-inner {
+  min-width: 32px;
+  min-height: 37px;
+}
+
+.numeric-input .numeric-input-title {
+  font-size: 14px;
+}
+
+.numeric-input-demo {
+  width: 120px;
+}
+.device {
+  line-height: 30px;
+  padding-left: 10%;
+}
+
+.console-title{
+  padding-bottom: 10px;
+  height: 40px;
+  line-height: 10px;
+  margin-bottom: 15px;
+}
+.console-title h5 {
+  display: inline-block;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  text-indent: 8px;
+  font-size: 14px;
+  border-left: 2px solid #88B7E0;
+}
+
+.pull-left {
+  float: left !important;
 }

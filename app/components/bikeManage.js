@@ -1,38 +1,110 @@
 import React, {Component} from 'react';
-import { Menu, Icon } from 'antd';
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
+import { Form, Select, Input, Button} from 'antd';
+const FormItem = Form.Item;
+const Option = Select.Option;
 
-class BikeManage extends Component{
 
+
+class BikeAdd extends Component{
+  render(){
+    return (
+      <form>
+        <FormItem
+         label="车辆编号"
+          labelCol={{ span: 4 }}
+          wrapperCol={{ span: 8 }}>
+            <Input type="text"/>
+        </FormItem>
+        <FormItem
+         label="车辆款式"
+          labelCol={{ span: 4 }}
+          wrapperCol={{ span: 8 }}>
+            <Input type="text"/>
+        </FormItem>
+         <FormItem
+         label="厂家"
+          labelCol={{ span: 4 }}
+          wrapperCol={{ span: 8 }}>
+            <Input type="text"/>
+        </FormItem>
+         <FormItem
+         label="价格"
+          labelCol={{ span: 4 }}
+          wrapperCol={{ span: 8 }}>
+            <Input
+          type="text"
+          style={{ width: '65%', marginRight: '3%' }}
+        />
+        <Select
+          style={{ width: '32%' }}
+        >
+          <Option value="rmb">RMB</Option>
+          <Option value="dollar">Dollar</Option>
+        </Select>
+        </FormItem>
+      </form>
+    ) 
+  }
+};
+
+class DeviceAdd extends Component {
   render() {
     return (
-      <Menu 
-        style={{ width: 240 }}
-        mode="inline"
-      >
-        <SubMenu key="sub1" title={<span><Icon type="plus-circle-o" /><span>增加车辆信息</span></span>}>
-            <Menu.Item key="1">车辆信息</Menu.Item>
-            <Menu.Item key="2">配套设备</Menu.Item>
-            <Menu.Item key="3">车辆的状态</Menu.Item>
-        </SubMenu>
-        <SubMenu key="sub2" title={<span><Icon type="delete" /><span>删除车辆信息</span></span>}>
-          <Menu.Item key="4">车辆状态修改</Menu.Item>
-          <Menu.Item key="5">配套设备使用状态修改</Menu.Item>
-        </SubMenu>
-        <SubMenu key="sub3" title={<span><Icon type="edit" /><span>修改车辆信息</span></span>}>
-          <Menu.Item key="6">车辆信息</Menu.Item>
-          <Menu.Item key="7">配套设备信息</Menu.Item>
-          <Menu.Item key="8">车辆状态</Menu.Item>
-        </SubMenu>
-        <SubMenu key="sub4" title={<span><Icon type="search" /><span>查询车辆信息</span></span>}>
-          <Menu.Item key="9">基本信息</Menu.Item>
-          <Menu.Item key="10">车辆位置</Menu.Item>
-          <Menu.Item key="11">使用记录</Menu.Item>
-          <Menu.Item key="12">维修记录</Menu.Item>
-        </SubMenu>
-      </Menu>
-    );
+      <div>
+        <span className="device">配套设备信息</span>
+        <Form onSubmit={this.handleSubmit}>
+          <FormItem
+            label="锁类型"
+            labelCol={{ span: 4 }}
+            wrapperCol={{ span: 8 }}
+          >
+              <Select placeholder="请选择类型">
+                <Option value="BlueTooth">蓝牙</Option>
+                <Option value="GPRS">GPRS</Option>
+                <Option value="GPRSBlue">GPRS+蓝牙</Option>
+                <Option value="LORA">LORA</Option>
+              </Select>
+          </FormItem>
+          <FormItem
+          label="锁编号"
+            labelCol={{ span: 4 }}
+            wrapperCol={{ span: 8 }}>
+              <Input type="text"/>
+          </FormItem>
+          <FormItem wrapperCol={{ span: 8, offset: 4 }}>
+            <Button type="primary" htmlType="submit">
+              保存
+            </Button>
+          </FormItem>
+        </Form>
+      </div>
+    )
   }
 }
+
+
+
+
+
+const BikeManage = Form.create()(React.createClass({
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+      }
+    });
+  },
+  render() {
+    const { getFieldDecorator } = this.props.form;
+    return (
+      <div>
+      <BikeAdd />
+      <DeviceAdd />
+      </div>
+    );
+  },
+}));
+
+
 export default BikeManage

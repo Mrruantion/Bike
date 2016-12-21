@@ -29,26 +29,84 @@ const ACTIVE = { color: 'red' }
 // 配置导航
 class App extends React.Component {
 
+    // constructor(props) {
+    //     super(props)
+    //     this.state = {
+    //         current: '',
+    //         username: ''
+    //     }
+    // }
+
+    // handleClick = (e) => {
+    //     this.setState({
+    //         current: e.key
+    //     })
+    // }
+
+    // componentDidMount() {
+    //     this.getUser()
+    // }
+
+    // getUser = () => {
+    //     this.setState({
+    //         username: 'luozh'
+    //     })
+    // }
+
     render() {
         return (
             <div>
-               <div className="ant-layout-header">
-                 <div className="ant-layout-wrapper">
-                    <div className="ant-layout-logo"></div>
-                    <Menu theme="dark" mode="horizontal"
-                        defaultSelectedKeys={['1']} style={{lineHeight: '64px'}}>
-                        <Menu.Item key="1"><Link to='/bikeManage'>车辆管理</Link></Menu.Item>
-                        <Menu.Item key="2"><Link to='/userManage'>用户管理</Link></Menu.Item>
-                        <Menu.Item key="3"><Link to='/operatorManage'>运营商管理</Link></Menu.Item>
-                        <Menu.Item key="4"><Link to='/repairManage'>维修管理</Link></Menu.Item>
-                        <Menu.Item key="5"><Link to='/messageRelease'>信息发布</Link></Menu.Item>
-                        <Menu.Item key="6"><Link to='/platformManage'>平台管理</Link></Menu.Item>
-                        <Menu.Item key="7"><Link to='/statisticalAnalysis'>统计分析</Link></Menu.Item>
+                <div id="leftMenu"> 
+                    <a href="#" id="logo">BikeSharePlatform</a>
+                    <Menu theme="dark"
+                        style={{ width: 185 }}
+                        mode="inline"
+                    >
+                        <SubMenu key="sub1" title={<span><Icon type="mail" /><span>车辆管理</span></span>}>
+                            <Menu.Item key="1"><Link to="/bikeManage">增加车辆信息</Link></Menu.Item>
+                            <Menu.Item key="2">删除车辆信息</Menu.Item>
+                            <Menu.Item key="3"><Link to="/operatorManage">修改车辆信息</Link></Menu.Item>
+                            <Menu.Item key="4"><Link to="/repairManage">查询车辆信息</Link></Menu.Item>
+                        </SubMenu>
+                        <SubMenu key="sub2" title={<span><Icon type="user" /><span>用户管理</span></span>}>
+                            <Menu.Item key="5"><Link to="/userManage">增加用户信息</Link></Menu.Item>
+                            <Menu.Item key="6">审核用户信息</Menu.Item>
+                            <Menu.Item key="7"><Link to="/statisticalAnalysis">删除用户信息</Link></Menu.Item>
+                            <Menu.Item key="8">修改用户信息</Menu.Item>
+                            <Menu.Item key="9">查询用户信息</Menu.Item>
+                        </SubMenu>
+                        <SubMenu key="sub3" title={<span><Icon type="team" /><span>运营商管理</span></span>}>
+                            <Menu.Item key="10">添加运营商</Menu.Item>
+                            <Menu.Item key="11">删除运营商</Menu.Item>
+                            <Menu.Item key="12">修改运营商</Menu.Item>
+                            <Menu.Item key="13">承租车辆管理</Menu.Item>
+                        </SubMenu>
+                        <SubMenu key="sub4" title={<span><Icon type="setting" /><span>维修管理</span></span>}>
+                            <Menu.Item key="14">提交维修需求</Menu.Item>
+                            <Menu.Item key="15">维修成本</Menu.Item>
+                            <Menu.Item key="16">维修记录</Menu.Item>
+                        </SubMenu>
+                        <SubMenu key="sub5" title={<span><Icon type="mail" /><span>信息发布</span></span>}>
+                            <Menu.Item key="17">发布信息</Menu.Item>
+                            <Menu.Item key="18">查询发布信息</Menu.Item>
+                        </SubMenu>
+                        <SubMenu key="sub6" title={<span><Icon type="appstore" /><span>平台管理</span></span>}>
+                            <Menu.Item key="19"><Link to="/messageRelease">系统用户管理</Link></Menu.Item>
+                        </SubMenu>
+                        <SubMenu key="sub7" title={<span><Icon type="pie-chart" /><span>统计分析</span></span>}>
+                            <Menu.Item key="20"><Link to="/statisticalAnalysis">统计服务</Link></Menu.Item>
+                        </SubMenu>
                     </Menu>
-                 </div>
                 </div>
-                <div className="right-box">
+                <div id="rightWrap">
+                    <Menu mode="horizontal">
+                        <SubMenu title={<span><Icon type="user" />xxx</span>}>
+                            <Menu.Item key="setting:1">退出</Menu.Item>
+                        </SubMenu>
+                    </Menu>
+                    <div className="right-box">
                         { this.props.children }
+                    </div>
                 </div>
             </div>
         )
