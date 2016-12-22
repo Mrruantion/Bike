@@ -16,9 +16,10 @@ const SubMenu = Menu.SubMenu
 import './main.css'
 
 // 引入单个页面（包括嵌套的子页面）
-import BikeManage from './components/bikeManage.js'
-import UserManage from './components/userManage.js'
-import OperatorManage from './components/operatorManage.js'
+import BikeMessageAdd from './components/bikeMessageAdd.js'
+import BikeMessageDelete from './components/bikeMessageDelete.js'
+import UserMessageAdd from './components/userMessageAdd.js'
+import OperatorAdd from './components/operatorAdd.js'
 import RepairManage from './components/repairManage.js'
 import MessageRelease from './components/messageRelease.js'
 import PlatformManage from './components/platformManage.js'
@@ -28,31 +29,6 @@ const ACTIVE = { color: 'red' }
 
 // 配置导航
 class App extends React.Component {
-
-    // constructor(props) {
-    //     super(props)
-    //     this.state = {
-    //         current: '',
-    //         username: ''
-    //     }
-    // }
-
-    // handleClick = (e) => {
-    //     this.setState({
-    //         current: e.key
-    //     })
-    // }
-
-    // componentDidMount() {
-    //     this.getUser()
-    // }
-
-    // getUser = () => {
-    //     this.setState({
-    //         username: 'luozh'
-    //     })
-    // }
-
     render() {
         return (
             <div>
@@ -63,20 +39,20 @@ class App extends React.Component {
                         mode="inline"
                     >
                         <SubMenu key="sub1" title={<span><Icon type="mail" /><span>车辆管理</span></span>}>
-                            <Menu.Item key="1"><Link to="/bikeManage">增加车辆信息</Link></Menu.Item>
-                            <Menu.Item key="2">删除车辆信息</Menu.Item>
-                            <Menu.Item key="3"><Link to="/operatorManage">修改车辆信息</Link></Menu.Item>
-                            <Menu.Item key="4"><Link to="/repairManage">查询车辆信息</Link></Menu.Item>
+                            <Menu.Item key="1"><Link to="/bikeMessageAdd">增加车辆信息</Link></Menu.Item>
+                            <Menu.Item key="2"><Link to="/bikeMessageDelete">删除车辆信息</Link></Menu.Item>
+                            <Menu.Item key="3"><Link to="/bikeMessageRepair">修改车辆信息</Link></Menu.Item>
+                            <Menu.Item key="4"><Link to="/bikeMessageSearch">查询车辆信息</Link></Menu.Item>
                         </SubMenu>
                         <SubMenu key="sub2" title={<span><Icon type="user" /><span>用户管理</span></span>}>
-                            <Menu.Item key="5"><Link to="/userManage">增加用户信息</Link></Menu.Item>
+                            <Menu.Item key="5"><Link to="/userMessageAdd">增加用户信息</Link></Menu.Item>
                             <Menu.Item key="6">审核用户信息</Menu.Item>
                             <Menu.Item key="7"><Link to="/statisticalAnalysis">删除用户信息</Link></Menu.Item>
                             <Menu.Item key="8">修改用户信息</Menu.Item>
                             <Menu.Item key="9">查询用户信息</Menu.Item>
                         </SubMenu>
                         <SubMenu key="sub3" title={<span><Icon type="team" /><span>运营商管理</span></span>}>
-                            <Menu.Item key="10">添加运营商</Menu.Item>
+                            <Menu.Item key="10"><Link to="/operatorAdd">添加运营商</Link></Menu.Item>
                             <Menu.Item key="11">删除运营商</Menu.Item>
                             <Menu.Item key="12">修改运营商</Menu.Item>
                             <Menu.Item key="13">承租车辆管理</Menu.Item>
@@ -103,6 +79,15 @@ class App extends React.Component {
                         <SubMenu title={<span><Icon type="user" />xxx</span>}>
                             <Menu.Item key="setting:1">退出</Menu.Item>
                         </SubMenu>
+                        <SubMenu title={<span><Icon type="info-circle-o" /></span>}>
+                            <Menu.Item key="setting:1">退出</Menu.Item>
+                        </SubMenu>
+                        <SubMenu title={<span><Icon type="notification" /></span>}>
+                            <Menu.Item key="setting:1">退出</Menu.Item>
+                        </SubMenu>
+                        <SubMenu title={<span><Icon type="mail" /></span>}>
+                            <Menu.Item key="setting:1">退出</Menu.Item>
+                        </SubMenu>
                     </Menu>
                     <div className="right-box">
                         { this.props.children }
@@ -118,10 +103,11 @@ class App extends React.Component {
 render((
     <Router history={hashHistory} >
         <Route path="/" component={App}>
-            <IndexRoute component={BikeManage} />
-            <Route path="/bikeManage" component={BikeManage} />
-            <Route path="/userManage" component={UserManage} />
-            <Route path="/operatorManage" component={OperatorManage} />
+            <IndexRoute component={BikeMessageAdd} />
+            <Route path="/bikeMessageAdd" component={BikeMessageAdd} />
+            <Route path="/bikeMessageDelete" component={BikeMessageDelete} />
+            <Route path="/userMessageAdd" component={UserMessageAdd} />
+            <Route path="/operatorAdd" component={OperatorAdd} />
             <Route path="/repairManage" component={RepairManage} />  
             <Route path="/messageRelease" component={MessageRelease} />       
             <Route path="/platformManage" component={PlatformManage} />      
