@@ -1,9 +1,20 @@
 import React, {Component} from 'react';
-import { Table } from 'antd';
+import { Table, Popconfirm } from 'antd';
+
+
+
+
+function confirm() {
+    message.success('Click on Yes');
+}
+
+function cancel() {
+  message.error('Click on No');
+}
 
 const columns = [
-  { title: '车辆编号', width: 100, dataIndex: 'name', key: 'name', fixed: 'left' },
-  { title: '车辆款式', width: 100, dataIndex: 'age', key: 'age', fixed: 'left' },
+  { title: '车辆编号', width: 100, dataIndex: 'name', key: 'name' },
+  { title: '车辆款式', width: 100, dataIndex: 'age', key: 'age' },
   { title: '厂家', dataIndex: 'address', key: '1' },
   { title: '价格', dataIndex: 'address', key: '2' },
   { title: '锁类型', dataIndex: 'address', key: '3' },
@@ -17,7 +28,13 @@ const columns = [
     key: 'operation',
     fixed: 'right',
     width: 100,
-    render: () => <a href="#">刪除</a>,
+    render: () => <Popconfirm title="Are you sure delete this task?" 
+                    onConfirm={confirm} 
+                    onCancel={cancel} 
+                    okText="Yes" 
+                    cancelText="No">
+                    <a href="#">Delete</a>
+                  </Popconfirm>
   },
 ];
 
@@ -33,7 +50,9 @@ const data = [{
   address: 'London Park',
 }];
 
+
 class BikeMessageDelete extends React.Component{
+  
   render(){
     return (
       <Table columns={columns} dataSource={data} scroll={{ x: 1300 }} />

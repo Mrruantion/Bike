@@ -18,6 +18,8 @@ import './main.css'
 // 引入单个页面（包括嵌套的子页面）
 import BikeMessageAdd from './components/bikeMessageAdd.js'
 import BikeMessageDelete from './components/bikeMessageDelete.js'
+import BikeMessageRepair from './components/bikeMessageRepair.js'
+import BikeMessageSearch from './components/bikeMessageSearch.js'
 import UserMessageAdd from './components/userMessageAdd.js'
 import OperatorAdd from './components/operatorAdd.js'
 import RepairManage from './components/repairManage.js'
@@ -80,7 +82,15 @@ class App extends React.Component {
                             <Menu.Item key="setting:1">退出</Menu.Item>
                         </SubMenu>
                         <SubMenu title={<span><Icon type="info-circle-o" /></span>}>
-                            <Menu.Item key="setting:1">退出</Menu.Item>
+                            <Menu.Item key="setting:1"><div>dddddddddd
+                            dddddddddd<br/>
+                            ddddddddddddd<br /></div></Menu.Item>
+                            <Menu.Item key="setting:2"><div>dddddddddd
+                            dddddddddd<br/>
+                            ddddddddddddd<br /></div></Menu.Item>
+                            <Menu.Item key="setting:4   "><div>dddddddddd
+                            dddddddddd<br/>
+                            ddddddddddddd<br /></div></Menu.Item>
                         </SubMenu>
                         <SubMenu title={<span><Icon type="notification" /></span>}>
                             <Menu.Item key="setting:1">退出</Menu.Item>
@@ -106,6 +116,8 @@ render((
             <IndexRoute component={BikeMessageAdd} />
             <Route path="/bikeMessageAdd" component={BikeMessageAdd} />
             <Route path="/bikeMessageDelete" component={BikeMessageDelete} />
+            <Route path="/bikeMessageRepair" component={BikeMessageRepair} />
+            <Route path="/bikeMessageSearch" component={BikeMessageSearch} />
             <Route path="/userMessageAdd" component={UserMessageAdd} />
             <Route path="/operatorAdd" component={OperatorAdd} />
             <Route path="/repairManage" component={RepairManage} />  
