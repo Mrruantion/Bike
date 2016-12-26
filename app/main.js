@@ -1,11 +1,11 @@
-import React from 'react'
+import React, {PropTypes} from 'react'
 import { render } from 'react-dom'
 
 // 引入React-Router模块
 import { Router, Route, Link, hashHistory, IndexRoute, Redirect, IndexLink} from 'react-router'
 
 // 引入Antd的导航组件
-import { Menu, Icon, Switch } from 'antd'
+import { Menu, Icon, Switch, Breadcrumb } from 'antd'
 const SubMenu = Menu.SubMenu
 
 // 引入Ant-Design样式 & Animate.CSS样式
@@ -16,11 +16,13 @@ const SubMenu = Menu.SubMenu
 import './main.css'
 
 // 引入单个页面（包括嵌套的子页面）
+// import NavPath from './components/component/navPath.js'
 import BikeMessageAdd from './components/bikeMessageAdd.js'
 import BikeMessageDelete from './components/bikeMessageDelete.js'
 import BikeMessageRepair from './components/bikeMessageRepair.js'
 import BikeMessageSearch from './components/bikeMessageSearch.js'
 import UserMessageAdd from './components/userMessageAdd.js'
+import UserMessageAudit from './components/userMessageAudit.js'
 import OperatorAdd from './components/operatorAdd.js'
 import RepairManage from './components/repairManage.js'
 import MessageRelease from './components/messageRelease.js'
@@ -29,8 +31,12 @@ import StatisticalAnalysis  from './components/statisticalAnalysis.js'
 
 const ACTIVE = { color: 'red' }
 
+
 // 配置导航
 class App extends React.Component {
+    constructor (props) {
+    super(props)
+  }
     render() {
         return (
             <div>
@@ -48,7 +54,7 @@ class App extends React.Component {
                         </SubMenu>
                         <SubMenu key="sub2" title={<span><Icon type="user" /><span>用户管理</span></span>}>
                             <Menu.Item key="5"><Link to="/userMessageAdd">增加用户信息</Link></Menu.Item>
-                            <Menu.Item key="6">审核用户信息</Menu.Item>
+                            <Menu.Item key="6"><Link to="/userMessageAudit">审核用户信息</Link></Menu.Item>
                             <Menu.Item key="7"><Link to="/statisticalAnalysis">删除用户信息</Link></Menu.Item>
                             <Menu.Item key="8">修改用户信息</Menu.Item>
                             <Menu.Item key="9">查询用户信息</Menu.Item>
@@ -82,15 +88,7 @@ class App extends React.Component {
                             <Menu.Item key="setting:1">退出</Menu.Item>
                         </SubMenu>
                         <SubMenu title={<span><Icon type="info-circle-o" /></span>}>
-                            <Menu.Item key="setting:1"><div>dddddddddd
-                            dddddddddd<br/>
-                            ddddddddddddd<br /></div></Menu.Item>
-                            <Menu.Item key="setting:2"><div>dddddddddd
-                            dddddddddd<br/>
-                            ddddddddddddd<br /></div></Menu.Item>
-                            <Menu.Item key="setting:4   "><div>dddddddddd
-                            dddddddddd<br/>
-                            ddddddddddddd<br /></div></Menu.Item>
+                           <Menu.Item key="setting:1">退出</Menu.Item>
                         </SubMenu>
                         <SubMenu title={<span><Icon type="notification" /></span>}>
                             <Menu.Item key="setting:1">退出</Menu.Item>
@@ -100,6 +98,9 @@ class App extends React.Component {
                         </SubMenu>
                     </Menu>
                     <div className="right-box">
+                        <div className="ant-layout-breadcrumb">
+                            
+                        </div>
                         { this.props.children }
                     </div>
                 </div>
@@ -107,18 +108,17 @@ class App extends React.Component {
         )
     }
 }
-
-
 // 配置路由
 render((
     <Router history={hashHistory} >
-        <Route path="/" component={App}>
+        <Route name="home" breadcrumbName="Home" path="/" component={App}>
             <IndexRoute component={BikeMessageAdd} />
             <Route path="/bikeMessageAdd" component={BikeMessageAdd} />
             <Route path="/bikeMessageDelete" component={BikeMessageDelete} />
             <Route path="/bikeMessageRepair" component={BikeMessageRepair} />
             <Route path="/bikeMessageSearch" component={BikeMessageSearch} />
             <Route path="/userMessageAdd" component={UserMessageAdd} />
+            <Route path="/userMessageAudit" component={UserMessageAudit} />
             <Route path="/operatorAdd" component={OperatorAdd} />
             <Route path="/repairManage" component={RepairManage} />  
             <Route path="/messageRelease" component={MessageRelease} />       

@@ -122,11 +122,6 @@ const BikeMessageAdd = Form.create()(React.createClass({
     );
     return (
        <div className="ant-row">
-          <div className='console-title'>
-              <div className="pull-left">
-                  <h5>车辆信息</h5>
-              </div>
-          </div>
           <Form horizontal onSubmit={this.handleSubmit}>
             <FormItem
               {...formItemLayout}

@@ -55,7 +55,7 @@ h1, h2, h3, h4, h5, h6, p, ul {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;    
-    padding: 20px 20px 0 20px;
+    padding: 10px 20px 0 20px;
     position: absolute;
     top: 0;
     left: 185px;
@@ -69,7 +69,7 @@ h1, h2, h3, h4, h5, h6, p, ul {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;  
-    padding: 20px 20px 0;
+    padding: 0px 20px 0;
     position: absolute;
     top: 73px;
     left: 0;
@@ -117,3 +117,12 @@ h1, h2, h3, h4, h5, h6, p, ul {
 .pull-left {
   float: left !important;
 }
+.ant-layout-breadcrumb {
+  margin: 7px 0 10px 0;
+}
+.ant-row {
+  margin-top:16px;
+}
+/*.ant-bikeSearch{
+  float: right;
+}*/
