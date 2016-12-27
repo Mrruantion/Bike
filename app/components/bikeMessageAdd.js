@@ -113,13 +113,6 @@ const BikeMessageAdd = Form.create()(React.createClass({
         offset: 6,
       },
     };
-    const prefixSelector = getFieldDecorator('prefix', {
-      initialValue: '86',
-    })(
-      <Select style={{ width: 60 }}>
-        <Option value="86">+86</Option>
-      </Select>
-    );
     return (
        <div className="ant-row">
           <Form horizontal onSubmit={this.handleSubmit}>
@@ -191,7 +184,7 @@ const BikeMessageAdd = Form.create()(React.createClass({
               hasFeedback
             >
               {getFieldDecorator('devicepassword', {
-              rules: [{ required: true, message: '请输入编号!' }],
+              rules: [{ required: true, message: '请输入密钥!' }],
             })(<Input />)}
             </FormItem>
             <FormItem

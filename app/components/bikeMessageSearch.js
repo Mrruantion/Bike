@@ -1,97 +1,121 @@
 import React, { Component } from 'react'
-import { Form, Row, Col, Input, Button, Select, Table, Icon} from 'antd'
+import { Form, Row, Col, Input, Button, Select, Table, Icon, Popconfirm} from 'antd'
 
 
 const FormItem = Form.Item;
 const {Option} = Select;
 
+
+
+const children = [];
+for (let i = 10; i < 36; i++) {
+  children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
+}
+
+function handleChange(value) {
+  console.log(`selected ${value}`);
+}
+
+function confirm(){
+	message.success('Click on Ok')
+}
+
+function cancel(){
+	message.error('Click on No');
+}
+
+const columns = [
+	{ title: '车辆编号', width: 100, dataIndex: 'bikeSerialNumber', key: '1' },
+	{ title: '车辆款式', width: 100, dataIndex: 'bikestyle', key: '2' },
+	{ title: '厂家', width: 100, dataIndex: 'manufacturer', key: '3' },
+	{ title: '价格', width: 100, dataIndex: 'price', key: '4' },
+	{ title: '锁类型', width: 100, dataIndex: 'locktype', key: '5' },
+	{ title: '锁编号', width: 100, dataIndex: 'lockSerialNumber', key: '6' },
+	{ title: '密钥', width: 100, dataIndex: 'devicepassword', key: '7' },
+	{ title: '二维码', width: 100, dataIndex: 'qcode', key: '8' },
+	{ title: '车辆状态', width: 100, dataIndex: 'bikestate', key: '9' },
+	{ title: '配套设备使用状态', width: 120, dataIndex: 'devicestate', key: '10' },
+	{
+	  title: '操作',
+	  key: 'operation',
+	  fixed: 'right',
+	  width: 100,
+	  render: () => <Popconfirm title="Are you sure delete this task?" 
+							onConfirm={confirm} 
+							onCancel={cancel} 
+							okText="Yes" 
+							cancelText="No">
+							<a href="#">Delete</a>
+						  </Popconfirm>
+	},
+];
+const data = [{
+	key: '1',
+	bikeSerialNumber: 'John Brom',
+	bikestyle: 32,
+	manufacturer: 'byd',
+	price: 'New York Park',
+	locktype: 'lock',
+}, {
+	key: '2',
+	bikeSerialNumber: 'Jim Green',
+	bikestyle: 40,
+	manufacturer: 'byd',
+	price: 'London Park',
+	locktype: 'lock'
+}];
+const rowSelection = {
+  onChange: (selectedRowKeys, selectedRows) => {
+    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+  },
+  onSelect: (record, selected, selectedRows) => {
+    console.log(record, selected, selectedRows);
+  },
+  onSelectAll: (selected, selectedRows, changeRows) => {
+    console.log(selected, selectedRows, changeRows);
+  },
+  getCheckboxProps: record => ({
+    disabled: record.name === 'Disabled User',    // Column configuration not to be checked
+  }),
+};
 class BikeMessageSearch extends Component {
-
+	
 	render() {
-    const { getFieldDecorator } = this.props.form;
-    const columns = [{
-        title: '姓名',
-        dataIndex: 'name',
-        key: 'name'
-      }, {
-        title: '性别',
-        key: 'sex',
-        render: (text, record) => (record.sex == '1' ? '男' : '女')
-      }, {
-        title: '出生年月',
-        key: 'birthday',
-        render: (text, record) => {
-          const date = record.birthday;
-          return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
-        }
-      }, {
-        title: '爱好',
-        key: 'hobby',
-        render: (text, record) => {
-          const hobby = {
-            eat: '吃饭',
-            sleep: '睡觉',
-            beat: '打豆豆'
-          };
-          const res = [];
-
-          Object.keys(hobby).forEach(v => {
-            if(record[v]) res.push(hobby[v]);
-          });
-
-          return <span>
-            {res.length ? res.reduce((p, n) => `${p} ${n}`) : ''}
-          </span>;
-        }
-      }, {
-        title: '手机号码',
-        key: 'phone',
-        dataIndex: 'phone',
-      }, {
-        title: '操作',
-        key: 'action',
-        render: (text, record) => (
-            <span>
-              <a href="javascript:void 0;" style={{marginRight: 10}} >编辑</a>
-              <a href="javascript:void 0;" >删除</a>
-            </span>
-        )
-      }];
+		const { getFieldDecorator } = this.props.form;
+		const formItemLayout = {
+		  labelCol: { span: 4 },
+		  wrapperCol: { span: 20 },
+		};
+		const prefixSelector = getFieldDecorator('prefix', {
+      initialValue: '1',
+    })(
+      <Select style={{ width: 110 }}>
+        <Option value="1">车辆信息</Option>
+		<Option value="2">配套设备信息</Option>
+      </Select>
+    );
 		return (
 			<div>
-				<Row type="flex" justify="space-between">
-          <Col>
-            <Select multiple 
-           
-             placeholder='按条件排序' >
-              <Option key='name'>姓名</Option>
-              <Option key='birthday'>出生年月</Option>
-              <Option key='sex'>性别</Option>
-            </Select>
-          </Col>
+				<Row>
 					<Col>
-						<Form inline >
-			        <FormItem
-               label="姓名">
-			          <Input {...getFieldDecorator('name')} />
-			        </FormItem>
-			        <FormItem 
-                label='性别' >
-                <Select {...getFieldDecorator('sex', {
-                  initialValue: '2'
-                })}>
-                  <Option value="1">男</Option>
-                  <Option value="0">女</Option>
-                  <Option value="2">无</Option>
-                </Select>
-			        </FormItem>
-			        <Button type="primary" htmlType="submit" style={{marginRight: 20}}>搜索</Button>
-			      </Form>
+						<Form inline>
+						  <Row>
+							<Col span={12}> 
+							  <FormItem 
+								style={{marginTop: 0}}
+								{...formItemLayout}
+								label="检索">
+							  <Input addonBefore={prefixSelector} {...getFieldDecorator('bikeSerialNumber')} />
+							  </FormItem>
+							</Col>
+							 <Button type="primary" htmlType="submit" >搜索</Button>
+						  </Row>
+						</Form>
 					</Col>
 				</Row>
 				<Row style={{marginTop: 20}}>
 					<Col>
-						<Table  columns={columns}  />
+						<Table rowSelection={rowSelection} columns={columns}  dataSource={data} scroll={{ x: 1240, y: 300 }} />
 					</Col>
 				</Row>
 			</div>

@@ -19,7 +19,9 @@ h1, h2, h3, h4, h5, h6, p, ul {
 }
 
 /* 左侧导航固定宽度 */
-#leftMenu {   
+#leftMenu {  
+    /*height: 1400px; */
+    overflow-y: auto; 
     position: absolute;
     top: 0;
     left: 0;
@@ -61,7 +63,7 @@ h1, h2, h3, h4, h5, h6, p, ul {
     left: 185px;
     right: 0;
     bottom: 0;
-    overflow-y: auto;
+    /*overflow-y: auto;*/
 
 }
 
@@ -75,7 +77,7 @@ h1, h2, h3, h4, h5, h6, p, ul {
     left: 0;
     right: 0;
     bottom: 0;
-    overflow-y: auto;
+    /*overflow-y: auto;*/
 }
 
 #rightWrap .ant-menu-submenu {
@@ -126,3 +128,13 @@ h1, h2, h3, h4, h5, h6, p, ul {
 /*.ant-bikeSearch{
   float: right;
 }*/
+
+
+/*UserMessageRepair*/
+.editable-row-text {
+  padding: 5px;
+}
+
+.editable-row-operations a {
+  margin-right: 8px;
+}
