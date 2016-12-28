@@ -1,36 +1,56 @@
 import React, {Component} from 'react';
-import { Menu, Icon } from 'antd';
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
+import { Upload, Icon, message } from 'antd';
 
-class OperatorManage extends Component{
+function getBase64(img, callback) {
+  const reader = new FileReader();
+  reader.addEventListener('load', () => callback(reader.result));
+  reader.readAsDataURL(img);
+}
+
+function beforeUpload(file) {
+  const isJPG = file.type === 'image/jpeg';
+  if (!isJPG) {
+    message.error('You can only upload JPG file!');
+  }
+  const isLt2M = file.size / 1024 / 1024 < 2;
+  if (!isLt2M) {
+    message.error('Image must smaller than 2MB!');
+  }
+  return isJPG && isLt2M;
+}
+
+class OperatorManage extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {};
+    this.handleChange = this.handleChange.bind(this);
+  }
+  
+
+  handleChange(info){
+    if (info.file.status === 'done') {
+      // Get this url from response in real world.
+      getBase64(info.file.originFileObj, imageUrl => this.setState({ imageUrl }));
+    }
+  }
 
   render() {
+    const imageUrl = this.state.imageUrl;
     return (
-      <Menu 
-        style={{ width: 240 }}
-        mode="inline"
+      <Upload
+        className="avatar-uploader"
+        name="avatar"
+        showUploadList={false}
+        action="/upload.do"
+        beforeUpload={beforeUpload}
+        onChange={this.handleChange}
       >
-        <SubMenu key="sub1" title={<span><Icon type="plus-circle-o" /><span>增加运营商</span></span>}>
-            <Menu.Item key="1">用户信息</Menu.Item>
-            <Menu.Item key="2">微信公众号设置</Menu.Item>
-        </SubMenu>
-        <SubMenu key="sub2" title={<span><Icon type="delete" /><span>删除运营商</span></span>}>
-          <Menu.Item key="3">用户状态</Menu.Item>
-          <Menu.Item key="4">账户状态</Menu.Item>
-        </SubMenu>
-        <SubMenu key="sub3" title={<span><Icon type="edit" /><span>修改车辆信息</span></span>}>
-          <Menu.Item key="5">用户信息</Menu.Item>
-          <Menu.Item key="6">账户信息</Menu.Item>
-        </SubMenu>
-        <SubMenu key="sub4" title={<span><Icon type="appstore-o" /><span>承租车辆管理</span></span>}>
-          <Menu.Item key="7">基本信息</Menu.Item>
-          <Menu.Item key="8">车辆位置</Menu.Item>
-          <Menu.Item key="9">使用记录</Menu.Item>
-          <Menu.Item key="10">维修记录</Menu.Item>
-          <Menu.Item key="11">承租车辆分配</Menu.Item>
-        </SubMenu>
-      </Menu>
+        {
+          imageUrl ?
+            <img src={imageUrl} role="presentation" className="avatar" /> :
+            <Icon type="plus" className="avatar-uploader-trigger" />
+        }
+      </Upload>
     );
   }
 }

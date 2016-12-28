@@ -33,7 +33,7 @@ const columns = [
                     onCancel={cancel} 
                     okText="Yes" 
                     cancelText="No">
-                    <a href="#">Delete</a>
+                    <a href="#">删除</a>
                   </Popconfirm>
   },
 ];
