@@ -37,98 +37,110 @@ const ACTIVE = { color: 'red' }
 
 
 // 配置导航
-class App extends React.Component {
-    constructor (props) {
-    super(props)
-  }
-    render() {
-        return (
-            <div>
-                <div id="leftMenu"> 
-                    <a href="#" id="logo">BikeSharePlatform</a>
-                    <Menu theme="dark"
-                        style={{ width: 185 }}
-                        mode="inline"
-                    >
-                        <SubMenu key="sub1" title={<span><Icon type="mail" /><span>车辆管理</span></span>}>
-                            <Menu.Item key="1"><Link to="/bikeMessageAdd">增加车辆信息</Link></Menu.Item>
-                            <Menu.Item key="2"><Link to="/bikeMessageDelete">删除车辆信息</Link></Menu.Item>
-                            <Menu.Item key="3"><Link to="/bikeMessageRepair">修改车辆信息</Link></Menu.Item>
-                            <Menu.Item key="4"><Link to="/bikeMessageSearch">查询车辆信息</Link></Menu.Item>
-                        </SubMenu>
-                        <SubMenu key="sub2" title={<span><Icon type="user" /><span>用户管理</span></span>}>
-                            <Menu.Item key="5"><Link to="/userMessageAdd">增加用户信息</Link></Menu.Item>
-                            <Menu.Item key="6"><Link to="/userMessageAudit">审核用户信息</Link></Menu.Item>
-                            <Menu.Item key="7"><Link to="/statisticalAnalysis">删除用户信息</Link></Menu.Item>
-                            <Menu.Item key="8"><Link to="/userMessageRepair">修改用户信息</Link></Menu.Item>
-                            <Menu.Item key="9"><Link to="/userMessageSearch">查询用户信息</Link></Menu.Item>
-                        </SubMenu>
-                        <SubMenu key="sub3" title={<span><Icon type="team" /><span>运营商管理</span></span>}>
-                            <Menu.Item key="10"><Link to="/operatorAdd">添加运营商</Link></Menu.Item>
-                            <Menu.Item key="11">删除运营商</Menu.Item>
-                            <Menu.Item key="12">修改运营商</Menu.Item>
-                            <Menu.Item key="13"><Link to="/operatorManage">承租车辆管理</Link></Menu.Item>
-                        </SubMenu>
-                        <SubMenu key="sub4" title={<span><Icon type="setting" /><span>维修管理</span></span>}>
-                            <Menu.Item key="14">提交维修需求</Menu.Item>
-                            <Menu.Item key="15">维修成本</Menu.Item>
-                            <Menu.Item key="16">维修记录</Menu.Item>
-                        </SubMenu>
-                        <SubMenu key="sub5" title={<span><Icon type="mail" /><span>信息发布</span></span>}>
-                            <Menu.Item key="17">发布信息</Menu.Item>
-                            <Menu.Item key="18">查询发布信息</Menu.Item>
-                        </SubMenu>
-                        <SubMenu key="sub6" title={<span><Icon type="appstore" /><span>平台管理</span></span>}>
-                            <Menu.Item key="19"><Link to="/messageRelease">系统用户管理</Link></Menu.Item>
-                        </SubMenu>
-                        <SubMenu key="sub7" title={<span><Icon type="pie-chart" /><span>统计分析</span></span>}>
-                            <Menu.Item key="20"><Link to="/statisticalAnalysis">统计服务</Link></Menu.Item>
-                        </SubMenu>
-                    </Menu>
-                </div>
-                <div id="rightWrap">
-                    <Menu mode="horizontal">
-                        <SubMenu title={<span><Icon type="user" />xxx</span>}>
-                            <Menu.Item key="setting:1">退出</Menu.Item>
-                        </SubMenu>
-                        <SubMenu title={<span><Icon type="info-circle-o" /></span>}>
-                           <Menu.Item key="setting:1">退出</Menu.Item>
-                        </SubMenu>
-                        <SubMenu title={<span><Icon type="notification" /></span>}>
-                            <Menu.Item key="setting:1">退出</Menu.Item>
-                        </SubMenu>
-                        <SubMenu title={<span><Icon type="mail" /></span>}>
-                            <Menu.Item key="setting:1">退出</Menu.Item>
-                        </SubMenu>
-                    </Menu>
-                    <div className="right-box">
-                        <div className="ant-layout-breadcrumb">
-                            <Breadcrumb>
-								<Breadcrumb.Item href="">
-								  <Icon type="home" />
-								</Breadcrumb.Item>
-								<Breadcrumb.Item href="">
-								  <Icon type="user" />
-								  <span>Application List</span>
-								</Breadcrumb.Item>
-								<Breadcrumb.Item>
-								  Application
-								</Breadcrumb.Item>
-							</Breadcrumb>
-                        </div>
-						 <Alert
-							message="Informational Notes"
-							description="Additional description and informations about copywriting."
-							type="info"
-							showIcon
-						  />
-                        { this.props.children }
-                    </div>
-                </div>
+
+// import BrowserDemo from 'site/theme/template/BrowserDemo';
+
+
+const App = React.createClass({
+  getInitialState() {
+    return {
+      collapse: false,
+    };
+  },
+  onCollapseChange() {
+    this.setState({
+      collapse: !this.state.collapse,
+    })
+  },
+  render() {
+    const collapse = this.state.collapse;
+    return (
+      <div className={collapse ? "layout-aside layout-aside-collapse" : "layout-aside"}>
+        <aside className="layout-sider">
+          <div className="layout-logo"></div>
+          <Menu mode={collapse ? "vertical" : "inline"} theme="dark" defaultSelectedKeys={['user']}>
+            <SubMenu key="sub1" title={<span><Icon type="mail" />{!collapse && <span className="nav-text">车辆管理</span>}</span>}>
+                <Menu.Item key="1"><Link to="/bikeMessageAdd">增加车辆信息</Link></Menu.Item>
+                <Menu.Item key="2"><Link to="/bikeMessageDelete">删除车辆信息</Link></Menu.Item>
+                <Menu.Item key="3"><Link to="/bikeMessageRepair">修改车辆信息</Link></Menu.Item>
+                <Menu.Item key="4"><Link to="/bikeMessageSearch">查询车辆信息</Link></Menu.Item>
+            </SubMenu>
+            <SubMenu key="user" title={<span><Icon type="user" />{!collapse && <span className="nav-text">用户管理</span>}</span>}>
+                <Menu.Item key="5"><Link to="/userMessageAdd">增加用户信息</Link></Menu.Item>
+                <Menu.Item key="6"><Link to="/userMessageAudit">审核用户信息</Link></Menu.Item>
+                <Menu.Item key="7"><Link to="/statisticalAnalysis">删除用户信息</Link></Menu.Item>
+                <Menu.Item key="8"><Link to="/userMessageRepair">修改用户信息</Link></Menu.Item>
+                <Menu.Item key="9"><Link to="/userMessageSearch">查询用户信息</Link></Menu.Item>
+            </SubMenu>
+            <SubMenu key="sub3" title={<span><Icon type="team" />{!collapse && <span className="nav-text">运营商管理</span>}</span>}>
+                <Menu.Item key="10"><Link to="/operatorAdd">添加运营商</Link></Menu.Item>
+                <Menu.Item key="11">删除运营商</Menu.Item>
+                <Menu.Item key="12">修改运营商</Menu.Item>
+                <Menu.Item key="13"><Link to="/operatorManage">承租车辆管理</Link></Menu.Item>
+            </SubMenu>
+            <SubMenu key="sub4" title={<span><Icon type="setting" />{!collapse && <span className="nav-text">维修管理</span>}</span>}>
+                <Menu.Item key="14">提交维修需求</Menu.Item>
+                <Menu.Item key="15">维修成本</Menu.Item>
+                <Menu.Item key="16">维修记录</Menu.Item>
+            </SubMenu>
+            <SubMenu key="sub5" title={<span><Icon type="mail" />{!collapse && <span className="nav-text">信息发布</span>}</span>}>
+                <Menu.Item key="17">发布信息</Menu.Item>
+                <Menu.Item key="18">查询发布信息</Menu.Item>
+            </SubMenu>
+			<SubMenu key="sub6" title={<span><Icon type="appstore" />{!collapse && <span className="nav-text">平台管理</span>}</span>}>
+                <Menu.Item key="19"><Link to="/messageRelease">系统用户管理</Link></Menu.Item>
+            </SubMenu>
+			<SubMenu key="sub7" title={<span><Icon type="pie-chart" />{!collapse && <span className="nav-text">统计分析</span>}</span>}>
+                <Menu.Item key="20"><Link to="/statisticalAnalysis">统计服务</Link></Menu.Item>
+            </SubMenu>
+          </Menu>
+          <div className="aside-action" onClick={this.onCollapseChange}>
+            {collapse ? <Icon type="right" /> : <Icon type="left" />}
+          </div>
+        </aside>
+        <div className="layout-main">
+          <div className="layout-header">
+			<Menu mode="horizontal">
+                <SubMenu title={<span><Icon type="user" />xxx</span>}>
+                    <Menu.Item key="setting:1">退出</Menu.Item>
+                </SubMenu>
+                <SubMenu title={<span><Icon type="info-circle-o" /></span>}>
+                    <Menu.Item key="setting:1">退出</Menu.Item>
+                </SubMenu>
+                <SubMenu title={<span><Icon type="notification" /></span>}>
+                    <Menu.Item key="setting:1">退出</Menu.Item>
+                </SubMenu>
+                <SubMenu title={<span><Icon type="mail" /></span>}>
+                    <Menu.Item key="setting:1">退出</Menu.Item>
+                </SubMenu>
+            </Menu>
+		  </div>
+          <div className="layout-container">
+            <Breadcrumb>
+              <Breadcrumb.Item>首页</Breadcrumb.Item>
+              <Breadcrumb.Item>应用列表</Breadcrumb.Item>
+              <Breadcrumb.Item>某应用</Breadcrumb.Item>
+            </Breadcrumb>
+            <div className="layout-content">
+              <div>
+				<Alert
+					message="Informational Notes"
+					description="Additional description and informations about copywriting."
+					type="info"
+					showIcon
+				/>
+				{this.props.children}
+              </div>
             </div>
-        )
-    }
-}
+          </div>
+          <div className="layout-footer">
+          Ant Design 版权所有 © 2015 由蚂蚁金服体验技术部支持
+          </div>
+        </div>
+      </div>
+    );
+  },
+});
 // 配置路由
 render((
     <Router history={hashHistory} >

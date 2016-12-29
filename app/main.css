@@ -18,169 +18,178 @@ h1, h2, h3, h4, h5, h6, p, ul {
   padding: 0;
 }
 
-/* 左侧导航固定宽度 */
-#leftMenu {  
-    /*height: 1400px; */
-    /*overflow-y: auto; */
-    /*position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    background: #333;
-    border-right: 1px solid #e9e9e9;*/
-    /*width: 224px;*/
-    background: #404040;
-    position: absolute;
-    overflow: auto;
-    padding-bottom: 24px;
-    height: 100%;
+.layout-aside {
+  width: 100%;
+  position: absolute;
+  overflow: auto;
+  padding-bottom: 24px;
+  height: 100%;
 }
 
-/* logo样式 */
-#logo {
-    display: block;
-    margin: 20px auto;
-    padding-left: 10px;
-    font-size: 20px;
-    color: #555;
-    -webkit-transition:all 1s;
-    -moz-transition:all 1s;
-    -o-transition:all 1s;
-    -ms-transition:all 1s;
-    transition:all 1s;
-}
-#logo:hover {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    transform: rotate(360deg);
+.layout-aside .layout-logo {
+  height: 32px;
+  background: #333;
+  border-radius: 4px;
+  margin: 16px 24px;
+  transition: all .3s;
 }
 
+.layout-aside-collapse .layout-logo {
+  width: 32px;
+  margin: 16px;
+  transition: all .3s;
+}
 
-/* 右侧宽度自适应 */
-#rightWrap {
-    -webkit-box-sizing: border-box;
+.layout-aside .layout-sider {
+  width: 224px;
+  background: #404040;
+  position: absolute;
+  overflow: auto;
+  padding-bottom: 42px;
+  height: 100%;
+  transition: all .3s;
+}
+
+.layout-aside-collapse .layout-sider {
+  width: 64px;
+  overflow: visible;
+  transition: all .3s;
+}
+
+.layout-aside .layout-sider > .menu {
+  margin-bottom: 20px;
+}
+
+.layout-aside .layout-sider > .menu > .menu-item {
+  margin: 16px 0;
+}
+
+.layout-aside .layout-sider > .menu > .menu-item .nav-text {
+  vertical-align: baseline;
+  display: inline-block;
+}
+
+.layout-aside .layout-sider > .menu > .menu-item > .anticon {
+  transition: font-size .3s;
+}
+
+.layout-aside-collapse .layout-sider > .menu > .menu-item {
+  transition: all 0s ease;
+}
+
+.layout-aside-collapse .layout-sider > .menu > .menu-item > .anticon {
+  font-size: 16px;
+  display: inline-block;
+}
+
+.layout-aside-collapse .layout-sider > .menu > .menu-item .nav-text {
+  display: none;
+}
+
+.layout-aside-collapse .layout-sider > .menu > .menu-item:hover {
+  background: #2db7f5;
+  color: #fff;
+  transition: all 0s ease;
+}
+
+.layout-aside-collapse .layout-sider > .menu > .menu-item:hover .nav-text {
+  display: inline-block;
+  vertical-align: top;
+  background: #2db7f5;
+  color: #fff;
+  padding-right: 16px;
+  border-radius: 0 5px 5px 0;
+}
+.layout-aside-collapse .layout-sider .ant-menu-submenu-vertical > .ant-menu-submenu-title:after{
+  font-family: "anticon" !important;
+  font-style: normal;
+  vertical-align: baseline;
+  text-align: center;
+  text-transform: none;
+  text-rendering: auto;
+  position: absolute;
+  transition: transform .3s ease;
+  right: 16px;
+  content: "";
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+  transform: rotate(270deg) scale(0.75);
+}
+/* 实际使用中需要改成 position: fixed */
+.layout-aside .aside-action {
+  height: 42px;
+  width: 207px;
+  position: fixed;
+  bottom: 0;
+  background: #404040;
+  color: #fff;
+  text-align: center;
+  line-height: 42px;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.layout-aside-collapse .aside-action {
+  width: 64px;
+  transition: all .3s;
+}
+
+.layout-aside .layout-header {
+  background: #fff;
+  height: 64px;
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.layout-aside .layout-main {
+	-webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;    
-    padding: 10px 20px 0 20px;
     position: absolute;
     top: 0;
-    left: 185px;
+    left: 224px;
     right: 0;
     bottom: 0;
     overflow-y: auto;
-
+    transition: all .3s;
 }
 
-.right-box {
-    -webkit-box-sizing: border-box;
+.layout-main .ant-menu-submenu {
+	line-height: 64px;
+	height: 64px;
+	float: right;
+}
+
+.layout-aside-collapse .layout-main {
+  -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box;  
-    padding: 0px 20px 0;
+    box-sizing: border-box;   
     position: absolute;
-    top: 73px;
-    left: 0;
+    top: 0;
+    left: 64px;
     right: 0;
     bottom: 0;
     overflow-y: auto;
-}
-
-#rightWrap .ant-menu-submenu {
-    float: right;
-}
-
-.numeric-input .ant-tooltip-inner {
-  min-width: 32px;
-  min-height: 37px;
-}
-
-.numeric-input .numeric-input-title {
-  font-size: 14px;
-}
-
-.numeric-input-demo {
-  width: 120px;
-}
-.device {
-  line-height: 30px;
-  padding-left: 10%;
-}
-
-.console-title{
-  padding-bottom: 10px;
-  height: 40px;
-  line-height: 10px;
-  margin-bottom: 15px;
-}
-.console-title h5 {
-  display: inline-block;
-  margin-bottom: 8px;
-  margin-top: 8px;
-  text-indent: 8px;
-  font-size: 14px;
-  border-left: 2px solid #88B7E0;
-}
-
-.pull-left {
-  float: left !important;
-}
-.ant-layout-breadcrumb {
-  margin: 7px 0 10px 0;
-}
-.ant-row {
-  margin-top:16px;
-}
-/*.ant-bikeSearch{
-  float: right;
-}*/
-
-
-/*UserMessageRepair*/
-.editable-row-text {
-  padding: 5px;
-}
-
-.editable-row-operations a {
-  margin-right: 8px;
+  transition: all .3s;
 }
 
 
-/*UserMessageAudit*/
-.ant-upload-select-picture-card i {
-  font-size: 28px;
-  color: #999;
+.layout-aside .layout-container {
+  margin: 12px 16px 24px;
 }
 
-.ant-upload-select-picture-card .ant-upload-text {
-  margin-top: 8px;
+.layout-aside .layout-content {
+  background: #fff;
+  padding: 24px;
+  /*margin-top: 12px;*/
+  border-radius: 4px;
+}
+
+.layout-aside .layout-footer {
+  height: 64px;
+  line-height: 64px;
+  text-align: center;
   font-size: 12px;
-  color: #666;
-}
-/*.clearfix{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -50px;
-}*/
-
-/*OperatorManage*/
-
-.avatar-uploader,
-.avatar-uploader-trigger,
-.avatar {
-  width: 150px;
-  height: 150px;
-}
-.avatar-uploader {
-  display: block;
-  border: 1px dashed #d9d9d9;
-  border-radius: 6px;
-  cursor: pointer;
-}
-.avatar-uploader-trigger {
-  display: table-cell;
-  vertical-align: middle;
-  font-size: 28px;
   color: #999;
+  background: #fff;
+  border-top: 1px solid #e9e9e9;
+  width: 100%;
 }
