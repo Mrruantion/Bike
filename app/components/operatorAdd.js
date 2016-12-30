@@ -47,11 +47,6 @@ const OperatorAdd = Form.create()(React.createClass({
     );
     return (
        <div className="ant-row">
-          <div className='console-title'>
-              <div className="pull-left">
-                  <h5>运营商信息</h5>
-              </div>
-          </div>
           <Form horizontal onSubmit={this.handleSubmit}>
              <FormItem
               {...formItemLayout}

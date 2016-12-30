@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { Table } from 'antd';
 
+
+
 const columns = [
   { title: '车辆编号', width: 100, dataIndex: 'name', key: 'name' },
   { title: '车辆款式', width: 100, dataIndex: 'age', key: 'age' },
@@ -9,7 +11,7 @@ const columns = [
   { title: '锁类型', dataIndex: 'address', key: '3' },
   { title: '锁编号', dataIndex: 'address', key: '4' },
   { title: '密钥', dataIndex: 'address', key: '5' },
-  { title: '二维码', dataIndex: 'address', key: '6' },
+  { title: '二维码', height: 100, dataIndex: 'qrcode', key: '6' },
   { title: '车辆状态', dataIndex: 'address', key: '7' },
   { title: '配套设备使用状态', dataIndex: 'address', key: '8' },
   {
@@ -21,29 +23,35 @@ const columns = [
   },
 ];
 
-const data = [{
-  key: '1',
-  name: 'John Brown',
-  age: 32,
-  address: 'New York Park',
-}, {
-  key: '2',
-  name: 'Jim Green',
-  age: 40,
-  address: 'London Park',
-}];
-
+ 
 class BikeMessageRepair extends React.Component{
+  constructor(props){
+    super(props)
+  }
+
+  
   render(){
+   const uploadButton = {
+     hh:44,
+     gg: () => <img src="../1.png" />
+   }
+    const data = [{
+      key: '1',
+      name: 'John Brown',
+      age: 32,
+      address: 'New York Park',
+      qrcode: uploadButton.hh,
+      }, {
+      key: '2',
+      name: 'Jim Green',
+      age: 40,
+      address: 'London Park',
+      
+    }];
     return (
         <div className="ant-row">
-          <div className='console-title'>
-              <div className="pull-left">
-                  <h5>车辆信息</h5>
-              </div>
-          </div>
           <Table columns={columns} dataSource={data} scroll={{ x: 1300 }} />
-      </div>
+        </div>
     )   
   }
 }

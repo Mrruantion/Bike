@@ -27,6 +27,8 @@ import UserMessageAudit from './components/userMessageAudit.js'
 import UserMessageRepair from './components/userMessageRepair.js'
 import UserMessageSearch from './components/userMessageSearch.js'
 import OperatorAdd from './components/operatorAdd.js'
+import OperatorDelete from './components/operatorDelete.js'
+import OperatorRepair from './components/operatorRepair.js'
 import OperatorManage from './components/operatorManage.js'
 import RepairManage from './components/repairManage.js'
 import MessageRelease from './components/messageRelease.js'
@@ -74,8 +76,8 @@ const App = React.createClass({
             </SubMenu>
             <SubMenu key="sub3" title={<span><Icon type="team" />{!collapse && <span className="nav-text">运营商管理</span>}</span>}>
                 <Menu.Item key="10"><Link to="/operatorAdd">添加运营商</Link></Menu.Item>
-                <Menu.Item key="11">删除运营商</Menu.Item>
-                <Menu.Item key="12">修改运营商</Menu.Item>
+                <Menu.Item key="11"><Link to="/operatorDelete">删除运营商</Link></Menu.Item>
+                <Menu.Item key="12"><Link to="/operatorRepair">修改运营商</Link></Menu.Item>
                 <Menu.Item key="13"><Link to="/operatorManage">承租车辆管理</Link></Menu.Item>
             </SubMenu>
             <SubMenu key="sub4" title={<span><Icon type="setting" />{!collapse && <span className="nav-text">维修管理</span>}</span>}>
@@ -155,6 +157,8 @@ render((
             <Route path="/userMessageRepair" component={UserMessageRepair} />
             <Route path="/userMessageSearch" component={UserMessageSearch} />
             <Route path="/operatorAdd" component={OperatorAdd} />
+            <Route path="/operatorDelete" component={OperatorDelete} />
+            <Route path="/operatorRepair" component={OperatorRepair} />
             <Route path="/operatorManage" component={OperatorManage} />
             <Route path="/repairManage" component={RepairManage} />  
             <Route path="/messageRelease" component={MessageRelease} />       
