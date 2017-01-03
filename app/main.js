@@ -32,6 +32,7 @@ import OperatorRepair from './components/operatorRepair.js'
 import OperatorManage from './components/operatorManage.js'
 import RepairManage from './components/repairManage.js'
 import MessageRelease from './components/messageRelease.js'
+import MessageSearch from './components/messageSearch.js'
 import PlatformManage from './components/platformManage.js'
 import StatisticalAnalysis  from './components/statisticalAnalysis.js'
 
@@ -86,11 +87,11 @@ const App = React.createClass({
                 <Menu.Item key="16">维修记录</Menu.Item>
             </SubMenu>
             <SubMenu key="sub5" title={<span><Icon type="mail" />{!collapse && <span className="nav-text">信息发布</span>}</span>}>
-                <Menu.Item key="17">发布信息</Menu.Item>
-                <Menu.Item key="18">查询发布信息</Menu.Item>
+                <Menu.Item key="17"><Link to="/messageRelease">发布信息</Link></Menu.Item>
+                <Menu.Item key="18"><Link to="/messageSearch">查询发布信息</Link></Menu.Item>
             </SubMenu>
 			<SubMenu key="sub6" title={<span><Icon type="appstore" />{!collapse && <span className="nav-text">平台管理</span>}</span>}>
-                <Menu.Item key="19"><Link to="/messageRelease">系统用户管理</Link></Menu.Item>
+                <Menu.Item key="19"><Link to="">系统用户管理</Link></Menu.Item>
             </SubMenu>
 			<SubMenu key="sub7" title={<span><Icon type="pie-chart" />{!collapse && <span className="nav-text">统计分析</span>}</span>}>
                 <Menu.Item key="20"><Link to="/statisticalAnalysis">统计服务</Link></Menu.Item>
@@ -161,7 +162,8 @@ render((
             <Route path="/operatorRepair" component={OperatorRepair} />
             <Route path="/operatorManage" component={OperatorManage} />
             <Route path="/repairManage" component={RepairManage} />  
-            <Route path="/messageRelease" component={MessageRelease} />       
+            <Route path="/messageRelease" component={MessageRelease} />  
+            <Route path="/messageSearch" component={MessageSearch} />     
             <Route path="/platformManage" component={PlatformManage} />      
             <Route path="/statisticalAnalysis" component={StatisticalAnalysis} />
         </Route>
