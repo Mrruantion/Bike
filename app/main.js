@@ -25,6 +25,7 @@ import BikeMessageSearch from './components/bikeMessageSearch.js'
 import UserMessageAdd from './components/userMessageAdd.js'
 import UserMessageAudit from './components/userMessageAudit.js'
 import UserMessageRepair from './components/userMessageRepair.js'
+import UserMessageDelete from './components/userMessageDelete.js'
 import UserMessageSearch from './components/userMessageSearch.js'
 import OperatorAdd from './components/operatorAdd.js'
 import OperatorDelete from './components/operatorDelete.js'
@@ -71,7 +72,7 @@ const App = React.createClass({
             <SubMenu key="user" title={<span><Icon type="user" />{!collapse && <span className="nav-text">用户管理</span>}</span>}>
                 <Menu.Item key="5"><Link to="/userMessageAdd">增加用户信息</Link></Menu.Item>
                 <Menu.Item key="6"><Link to="/userMessageAudit">审核用户信息</Link></Menu.Item>
-                <Menu.Item key="7"><Link to="/statisticalAnalysis">删除用户信息</Link></Menu.Item>
+                <Menu.Item key="7"><Link to="/userMessageDelete">删除用户信息</Link></Menu.Item>
                 <Menu.Item key="8"><Link to="/userMessageRepair">修改用户信息</Link></Menu.Item>
                 <Menu.Item key="9"><Link to="/userMessageSearch">查询用户信息</Link></Menu.Item>
             </SubMenu>
@@ -91,7 +92,7 @@ const App = React.createClass({
                 <Menu.Item key="18"><Link to="/messageSearch">查询发布信息</Link></Menu.Item>
             </SubMenu>
 			<SubMenu key="sub6" title={<span><Icon type="appstore" />{!collapse && <span className="nav-text">平台管理</span>}</span>}>
-                <Menu.Item key="19"><Link to="">系统用户管理</Link></Menu.Item>
+                <Menu.Item key="19"><Link to="/platformManage">系统用户管理</Link></Menu.Item>
             </SubMenu>
 			<SubMenu key="sub7" title={<span><Icon type="pie-chart" />{!collapse && <span className="nav-text">统计分析</span>}</span>}>
                 <Menu.Item key="20"><Link to="/statisticalAnalysis">统计服务</Link></Menu.Item>
@@ -121,8 +122,8 @@ const App = React.createClass({
           <div className="layout-container">
             <Breadcrumb>
               <Breadcrumb.Item>首页</Breadcrumb.Item>
-              <Breadcrumb.Item>应用列表</Breadcrumb.Item>
-              <Breadcrumb.Item>某应用</Breadcrumb.Item>
+              <Breadcrumb.Item>车辆管理</Breadcrumb.Item>
+              <Breadcrumb.Item>增加车辆信息</Breadcrumb.Item>
             </Breadcrumb>
             <div className="layout-content">
               <div>
@@ -156,6 +157,7 @@ render((
             <Route path="/userMessageAdd" component={UserMessageAdd} />
             <Route path="/userMessageAudit" component={UserMessageAudit} />
             <Route path="/userMessageRepair" component={UserMessageRepair} />
+			<Route path="/userMessageDelete" component={UserMessageDelete} />
             <Route path="/userMessageSearch" component={UserMessageSearch} />
             <Route path="/operatorAdd" component={OperatorAdd} />
             <Route path="/operatorDelete" component={OperatorDelete} />

@@ -28,8 +28,8 @@ const columns = [
 	{ title: '姓名', width: 100, dataIndex: 'userName', key: '1' },
 	{ title: '昵称', width: 100, dataIndex: 'othername', key: '2' },
 	{ title: '年龄', width: 100, dataIndex: 'age', key: '3' },
-	{ title: '身份证号', width: 100, dataIndex: 'idcard', key: '4' },
-	{ title: '电话号码', width: 100, dataIndex: 'phone', key: '5' },
+	{ title: '身份证号', width: 150, dataIndex: 'idcard', key: '4' },
+	{ title: '电话号码', width: 150, dataIndex: 'phone', key: '5' },
 	{ title: '性别', width: 100, dataIndex: 'gender', key: '6' },
 	{
 	  title: '操作',
@@ -85,13 +85,13 @@ class UserMessageSearch extends Component {
 		  wrapperCol: { span: 20 },
 		};
 		const prefixSelector = getFieldDecorator('prefix', {
-      initialValue: '1',
-    })(
-      <Select style={{ width: 110 }}>
-        <Option value="1">基本信息</Option>
-				<Option value="2">使用记录</Option>
-      </Select>
-    );
+		  initialValue: '1',
+		})(
+		  <Select style={{ width: 110 }}>
+			<Option value="1">基本信息</Option>
+			<Option value="2">使用记录</Option>
+		  </Select>
+		);
 		return (
 			<div>
 				<Row>
@@ -113,7 +113,7 @@ class UserMessageSearch extends Component {
 				</Row>
 				<Row style={{marginTop: 20}}>
 					<Col>
-						<Table rowSelection={rowSelection} columns={columns}  dataSource={data} scroll={{ x: 1800 }} />
+						<Table rowSelection={rowSelection} columns={columns}  dataSource={data} scroll={{ x: 900 }} />
 					</Col>
 				</Row>
 			</div>

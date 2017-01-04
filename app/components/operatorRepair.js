@@ -30,8 +30,8 @@ class EditableCell extends React.Component {
         return nextProps.editable !== this.state.editable ||
             nextState.value !== this.state.value;
     }
-    handleChange(e) {
-        const value = e.target.value;
+    handleChange(value) {
+		console.log(value);
         this.setState({ value });
     }
     render() {
@@ -41,15 +41,12 @@ class EditableCell extends React.Component {
 			editable ?
 			<div>
 			   <Select
-                    showSearch
-                    style={{ width: 200 }}
-                    placeholder="Select a person"
-                    optionFilterProp="children"
-                    onChange={e => this.handleChange(e)}
+                    style={{ width: 100 }}
+                    onChange={this.handleChange.bind(this)}
                 >
-                    <Option value="jack">Jack</Option>
-                    <Option value="lucy">Lucy</Option>
-                    <Option value="tom">Tom</Option>
+                    <Option value="正在使用">正在使用</Option>
+                    <Option value="冻结">冻结</Option>
+                    <Option value="已注销">已注销</Option>
                 </Select>
 			</div>
 			:
@@ -110,23 +107,33 @@ class OperatorRepair extends React.Component {
       width: 100,
       render: (text, record, index) => this.renderColumns(this.state.data, index, 'gender', text),
     }, {
+      title: '用户状态',
+      dataIndex: 'userStatus',
+      width: 100,
+      render: (text, record, index) => this.renderColumns(this.state.data, index, 'userStatus', text),
+    }, {
+      title: '账户状态',
+      dataIndex: 'countStatus',
+      width: 100,
+      render: (text, record, index) => this.renderColumns(this.state.data, index, 'countStatus', text),
+    }, {
 	  width: 100,
       title: '操作',
       dataIndex: 'operation',
       render: (text, record, index) => {
-        const { editable } = this.state.data[index].username;
+        const { editable } = this.state.data[index].userStatus;
         return (<div className="editable-row-operations">
           {
             editable ?
             <span>
-              <a onClick={() => this.editDone(index, 'save')}>Save</a>
-              <Popconfirm title="Sure to cancel?" onConfirm={() => this.editDone(index, 'cancel')}>
-                <a>Cancel</a>
+              <a onClick={() => this.editDone(index, 'save')}>保存</a>
+              <Popconfirm title="确定取消?" onConfirm={() => this.editDone(index, 'cancel')}>
+                <a>取消</a>
               </Popconfirm>
             </span>
             :
             <span>
-              <a onClick={() => this.edit(index)}>Edit</a>
+              <a onClick={() => this.edit(index)}>修改</a>
             </span>
           }
         </div>);
@@ -136,54 +143,58 @@ class OperatorRepair extends React.Component {
       data: [{
         key: '0',
         username: {
-          editable: false,
           value: 'Edward King 0',
         },
 		othername: {
-		  editable: false,
           value: '艾德华纽盖特',
         },
         age: {
-          editable: false,
           value: '32',
         },
 		idcard: {
-		  editable: false,
           value: 'London, k Lane no. 0',
         },
         phone: {
-		  editable: false,
           value: '185445444521',
         },
 		gender: {
-		  editable: false,
           value: '男',
+        },
+		userStatus: {
+		  editable: false,
+          value: '正在使用',
+        },
+		countStatus: {
+	      editable: false,
+          value: '正在使用',
         }
       },{
         key: '1',
         username: {
-          editable: false,
           value: 'Edward King 0',
         },
 		othername: {
-		  editable: false,
           value: '艾德华纽盖特',
         },
         age: {
-          editable: false,
           value: '32',
         },
 		idcard: {
-		  editable: false,
           value: 'London, k Lane no. 0',
         },
         phone: {
-		  editable: false,
           value: '185445444521',
         },
 		gender: {
-		  editable: false,
           value: '男',
+        },
+		userStatus: {
+		  editable: false,
+          value: '正在使用',
+        },
+		countStatus: {
+		  editable: false,
+          value: '正在使用',
         }
       }
 	  ],

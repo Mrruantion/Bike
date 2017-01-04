@@ -33,26 +33,24 @@ class EditableCell extends React.Component {
         return nextProps.editable !== this.state.editable ||
             nextState.value !== this.state.value;
     }
-	handleChange(e){
-		const value = e.target.value;
-		this.setState=({ value });
-	}
+	handleChange(value) {
+		console.log(value);
+        this.setState({ value });
+    }
     render() {
         const { value, editable } = this.state;
         return (<div>
         {
 			editable ?
 			<div>
-			 <Select
-				style={{ width: 100 }}
-				placeholder={value}
-				optionFilterProp="children"
-				onChange={e => handleChange(e)}
-			  >
-				<Option value="jack">Jack</Option>
-				<Option value="lucy">Lucy</Option>
-				<Option value="tom">Tom</Option>
-			  </Select>
+			   <Select
+                    style={{ width: 100 }}
+					placeholder={value}
+                    onChange={this.handleChange.bind(this)}
+                >
+					<Option value="正在使用" >正在使用</Option>
+                    <Option value="已注销" >已注销</Option>
+                </Select>
 			</div>
 			:
 			<div className="editable-row-text">
@@ -84,33 +82,27 @@ class OperatorDelete extends React.Component {
     this.columns = [{
       title: '登录账号',
       dataIndex: 'userName',
-      width: 100,
-      render: (text, record, index) => this.renderColumns(this.state.data, index, 'userName', text),
+      width: 100
     }, {
       title: '密码',
       dataIndex: 'password',
-      width: 100,
-      render: (text, record, index) => this.renderColumns(this.state.data, index, 'password', text),
+      width: 100
     }, {
       title: '公司名称',
       dataIndex: 'company',
-      width: 100,
-      render: (text, record, index) => this.renderColumns(this.state.data, index, 'company', text),
+      width: 100
     }, {
       title: '联系人',
       dataIndex: 'contacter',
-      width: 100,
-      render: (text, record, index) => this.renderColumns(this.state.data, index, 'contacter', text),
+      width: 100
     }, {
       title: '联系电话',
       dataIndex: 'telephone',
-      width: 100,
-      render: (text, record, index) => this.renderColumns(this.state.data, index, 'telephone', text),
+      width: 100
     }, {
       title: '手机号码',
       dataIndex: 'phone',
-      width: 100,
-      render: (text, record, index) => this.renderColumns(this.state.data, index, 'phone', text),
+      width: 100
     }, {
       title: '用户状态',
       dataIndex: 'user_status',

@@ -112,7 +112,7 @@ class OperatorManage extends Component {
 							  <Input addonBefore={prefixSelector} {...getFieldDecorator('bikeSerialNumber')} />
 							  </FormItem>
 							</Col>
-							 <Button type="primary" htmlType="submit" >搜索</Button>
+							 <Button type="primary" htmlType="submit" style={{ marginLeft: -80 }}>搜索</Button>
 						  </Row>
 						</Form>
 					</Col>
