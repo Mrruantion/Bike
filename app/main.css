@@ -173,12 +173,12 @@ h1, h2, h3, h4, h5, h6, p, ul {
 
 
 .layout-aside .layout-container {
-  margin: 12px 16px 24px;
+  margin: 12px 16px 64px 24px;
 }
 
 .layout-aside .layout-content {
   background: #fff;
-  padding: 24px;
+  padding: 50px 24px 24px 0;
   /*margin-top: 12px;*/
   border-radius: 4px;
 }

@@ -56,8 +56,10 @@ const App = React.createClass({
       collapse: !this.state.collapse,
     })
   },
+  
   render() {
     const collapse = this.state.collapse;
+	const { routes, params, children } = this.props;
     return (
       <div className={collapse ? "layout-aside layout-aside-collapse" : "layout-aside"}>
         <aside className="layout-sider">
@@ -120,19 +122,9 @@ const App = React.createClass({
             </Menu>
 		  </div>
           <div className="layout-container">
-            <Breadcrumb>
-              <Breadcrumb.Item>首页</Breadcrumb.Item>
-              <Breadcrumb.Item>车辆管理</Breadcrumb.Item>
-              <Breadcrumb.Item>增加车辆信息</Breadcrumb.Item>
-            </Breadcrumb>
+            <Breadcrumb routes={routes} params={params} style={{ marginButtom: 150 }} /> 
             <div className="layout-content">
               <div>
-				<Alert
-					message="Informational Notes"
-					description="Additional description and informations about copywriting."
-					type="info"
-					showIcon
-				/>
 				{this.props.children}
               </div>
             </div>
@@ -148,26 +140,40 @@ const App = React.createClass({
 // 配置路由
 render((
     <Router history={hashHistory} >
-        <Route name="home" breadcrumbName="Home" path="/" component={App}>
-            <IndexRoute component={BikeMessageAdd} />
-            <Route path="/bikeMessageAdd" component={BikeMessageAdd} />
-            <Route path="/bikeMessageDelete" component={BikeMessageDelete} />
-            <Route path="/bikeMessageRepair" component={BikeMessageRepair} />
-            <Route path="/bikeMessageSearch" component={BikeMessageSearch} />
-            <Route path="/userMessageAdd" component={UserMessageAdd} />
-            <Route path="/userMessageAudit" component={UserMessageAudit} />
-            <Route path="/userMessageRepair" component={UserMessageRepair} />
-			<Route path="/userMessageDelete" component={UserMessageDelete} />
-            <Route path="/userMessageSearch" component={UserMessageSearch} />
-            <Route path="/operatorAdd" component={OperatorAdd} />
-            <Route path="/operatorDelete" component={OperatorDelete} />
-            <Route path="/operatorRepair" component={OperatorRepair} />
-            <Route path="/operatorManage" component={OperatorManage} />
-            <Route path="/repairManage" component={RepairManage} />  
-            <Route path="/messageRelease" component={MessageRelease} />  
-            <Route path="/messageSearch" component={MessageSearch} />     
-            <Route path="/platformManage" component={PlatformManage} />      
-            <Route path="/statisticalAnalysis" component={StatisticalAnalysis} />
+        <Route breadcrumbName="首页" path="/" component={App}>
+            <IndexRoute breadcrumbName="增加车辆信息" component={BikeMessageAdd} />
+            <Route breadcrumbName="车辆管理" path="/">
+				<Route path="/bikeMessageAdd" breadcrumbName="增加车辆信息" component={BikeMessageAdd} />
+				<Route path="/bikeMessageDelete" breadcrumbName="删除车辆信息" component={BikeMessageDelete} />
+				<Route path="/bikeMessageRepair" breadcrumbName="修改车辆信息" component={BikeMessageRepair} />
+				<Route path="/bikeMessageSearch" breadcrumbName="查询车辆信息" component={BikeMessageSearch} />
+			</Route>
+			<Route breadcrumbName="用户管理" path="/">
+				<Route path="/userMessageAdd" breadcrumbName="增加用户信息" component={UserMessageAdd} />
+				<Route path="/userMessageAudit" breadcrumbName="审核用户信息" component={UserMessageAudit} />
+				<Route path="/userMessageRepair" breadcrumbName="删除用户信息" component={UserMessageRepair} />
+				<Route path="/userMessageDelete" breadcrumbName="修改用户信息" component={UserMessageDelete} />
+				<Route path="/userMessageSearch" breadcrumbName="查询用户信息" component={UserMessageSearch} />
+            </Route>
+			<Route breadcrumbName="运营商管理" path="/">
+				<Route path="/operatorAdd" breadcrumbName="添加运营商" component={OperatorAdd} />
+				<Route path="/operatorDelete" breadcrumbName="删除运营商" component={OperatorDelete} />
+				<Route path="/operatorRepair" breadcrumbName="修改运营商" component={OperatorRepair} />
+				<Route path="/operatorManage" breadcrumbName="承租车辆管理" component={OperatorManage} />
+			</Route>
+			<Route breadcrumbName="维修管理" path="/">
+				<Route path="/repairManage" breadcrumbName="提交维修需求" component={RepairManage} />  
+			</Route>
+			<Route breadcrumbName="信息发布" path="/">
+				<Route path="/messageRelease" breadcrumbName="发布信息" component={MessageRelease} />  
+				<Route path="/messageSearch" breadcrumbName="查询发布信息" component={MessageSearch} />   
+			</Route>
+			<Route breadcrumbName="平台管理" path="/">
+				<Route path="/platformManage" breadcrumbName="系统用户管理" component={PlatformManage} />      
+            </Route>
+			<Route breadcrumbName="统计服务" path="/">
+				<Route path="/statisticalAnalysis" breadcrumbName="统计服务" component={StatisticalAnalysis} />
+			</Route>
         </Route>
     </Router>
 ), document.getElementById('root'));
